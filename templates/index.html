@@ -1,0 +1,114 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market Dashboard</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <h1 class="text-center text-primary">Stock Market Dashboard</h1>
+        <p class="text-center text-muted">Analyze stock news, trends, and predictions</p>
+
+        <!-- Tabs -->
+        <ul class="nav nav-tabs" id="stockTabs">
+            <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#news">News & Sentiment</a></li>
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#technical">Technical Indicators</a></li>
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#candlestick">Candlestick Chart</a></li>
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#prediction">Stock Prediction</a></li>
+            <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#chatbot">ChatBot</a></li>
+        </ul>
+
+        <div class="tab-content mt-3">
+            <!-- News & Sentiment Analysis -->
+            <div class="tab-pane fade show active" id="news">
+                <div class="text-center">
+                    <input type="text" id="stockName" class="form-control w-50 d-inline-block" placeholder="Enter stock name (e.g., Tesla)">
+                    <button id="fetchNews" class="btn btn-primary">Get News</button>
+                </div>
+                <div id="newsContainer" class="mt-4"></div>
+            </div>
+
+            <!-- Technical Indicators -->
+            <div class="tab-pane fade" id="technical">
+                <select id="techStock" class="form-select w-50">
+                    <option value="AAPL">Apple (AAPL)</option>
+                    <option value="RELIANCE.NS">Reliance (RELIANCE.NS)</option>
+                </select>
+                <button id="fetchIndicators" class="btn btn-primary mt-2">Get Indicators</button>
+                
+                <!-- Display Price Chart -->
+                <h4 class="mt-3">Stock Price & Bollinger Bands</h4>
+                <div id="priceChartContainer" class="mt-3"></div>
+
+                <!-- Display RSI Chart -->
+                <h4 class="mt-3">Relative Strength Index (RSI)</h4>
+                <div id="rsiChartContainer" class="mt-3"></div>
+
+                <!-- Display MACD Chart -->
+                <h4 class="mt-3">Moving Average Convergence Divergence (MACD)</h4>
+                <div id="macdChartContainer" class="mt-3"></div>
+
+                <!-- Display Volume Analysis Chart -->
+                <h4 class="mt-3">Volume Analysis</h4>
+                <div id="volumeChartContainer" class="mt-3"></div>
+            </div>
+
+            <!-- Candlestick Chart -->
+            <div class="tab-pane fade" id="candlestick">
+                <select id="candlestickStock" class="form-select w-50">
+                    <option value="AAPL">Apple (AAPL)</option>
+                    <option value="RELIANCE.NS">Reliance (RELIANCE.NS)</option>
+                </select>
+                <button id="fetchCandlestick" class="btn btn-primary mt-2">Get Candlestick Chart</button>
+                <div id="candlestickContainer" class="mt-3"></div>
+            </div>
+
+            <div class="tab-pane fade" id="prediction">
+                <select id="predictionStock" class="form-select w-50">
+                    <option value="AAPL">Apple (AAPL)</option>
+                    <option value="RELIANCE.NS">Reliance (RELIANCE.NS)</option>
+                </select>
+                <div class="input-group mt-2 w-50">
+                    <span class="input-group-text">Duration (days)</span>
+                    <input type="number" id="predictionDuration" class="form-control" value="365" min="1">
+                </div>
+                <div class="input-group mt-2 w-50">
+                    <span class="input-group-text">Investment (₹)</span>
+                    <input type="number" id="predictionAmount" class="form-control" value="1000" min="1" step="0.01">
+                </div>
+                <button id="fetchPrediction" class="btn btn-primary mt-2">Get Prediction</button>
+                <div id="predictionChartContainer" class="mt-3"></div>
+            </div>
+
+            <!-- New Chatbot Tab -->
+            <div id="chatbot" class="tab-pane fade">
+                <h3>Chatbot</h3>
+                <div id="chat-container">
+                    <div id="chat-box"></div>
+                    <input type="text" id="chat-input" placeholder="Type a message...">
+                    <button id="send-btn">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
