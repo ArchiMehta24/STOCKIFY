@@ -3,6 +3,7 @@ A web application to analyze stocks with news sentiment, technical indicators, a
 
 ## Installation
 ### Cloning the repository:
+https://github.com/ArchiMehta24/STOCKIFY.git
 
 ### Installing dependencies:
 Run `pip install -r requirements.txt`
