@@ -1,0 +1,13 @@
+flask
+pandas
+yfinance
+nltk
+requests
+plotly
+scikit-learn
+keras
+tensorflow
+groq
+langchain
+langchain-groq
+python-dotenv
