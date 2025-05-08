@@ -110,5 +110,54 @@
     <!-- Custom JS -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
+    <script>
+        // Client-side validation that completely stops invalid submissions
+        document.getElementById('fetchPrediction').addEventListener('click', function(e) {
+            const amount = parseFloat(document.getElementById('predictionAmount').value);
+            const duration = parseInt(document.getElementById('predictionDuration').value);
+            const errorDiv = document.getElementById('predictionError') || (function() {
+                const div = document.createElement('div');
+                div.id = 'predictionError';
+                div.className = 'mt-2';
+                document.querySelector('#prediction').appendChild(div);
+                return div;
+            })();
+        
+            // Clear previous errors
+            errorDiv.innerHTML = '';
+            
+            // Validate inputs
+            let isValid = true;
+            
+            if (amount <= 0) {
+                errorDiv.innerHTML += `
+                    <div class="alert alert-danger">
+                        ❌ Investment amount must be greater than 0
+                    </div>
+                `;
+                isValid = false;
+            }
+            
+            if (duration <= 0) {
+                errorDiv.innerHTML += `
+                    <div class="alert alert-danger">
+                        ❌ Duration must be greater than 0 days
+                    </div>
+                `;
+                isValid = false;
+            }
+            
+            // COMPLETELY STOP if invalid
+            if (!isValid) {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                return false;
+            }
+            
+            // Only proceed if valid
+            return true;
+        });
+    </script>
+
 </body>
 </html>

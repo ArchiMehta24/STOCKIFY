@@ -1,5 +1,32 @@
 // script.js
 $(document).ready(function () {
+    function validateInputs() {
+        let isValid = true;
+        $(".error-message").remove();
+        $(".is-invalid").removeClass("is-invalid");
+
+        // Validate duration
+        const duration = parseInt($("#predictionDuration").val());
+        if (isNaN(duration) || duration <= 0) {
+            showError($("#predictionDuration"), "Duration must be at least 1 day");
+            isValid = false;
+        }
+
+        // Validate amount
+        const amount = parseFloat($("#predictionAmount").val());
+        if (isNaN(amount) || amount <= 0) {
+            showError($("#predictionAmount"), "Investment must be greater than ₹0");
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
+    function showError(element, message) {
+        element.addClass("is-invalid");
+        element.after(`<div class="error-message text-danger small mt-1">${message}</div>`);
+    }
+
     function fetchData(url, containerId, callback) {
         $.getJSON(url, function (data) {
             if (data.error) {
