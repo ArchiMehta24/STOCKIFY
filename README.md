@@ -30,6 +30,9 @@ Open http://localhost:5000 to view it in the browser.
 ### Chatbot
 - AI-powered chatbot (Groq API) answers stock-related queries.
 
+### Automation Testing
+- Automated end-to-end testing was implemented using Cypress to ensure robust performance and accurate functionality across all modules of STOCKIFY.
+
 ## Developer
 ### This Project was built by
 
